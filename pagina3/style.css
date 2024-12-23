@@ -1,0 +1,437 @@
+:root {
+    --color-bg: #f7f7f7;
+    --color-text: #333;
+    --color-disc-border: #333;
+    --color-message-bg: #fff;
+    --color-message-hover: #1e88e5;
+    --color-message-content-bg: #e1f5fe;
+    --color-quadrado: #a3009e;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+    justify-items: center;
+}
+
+.tema {
+    min-width: 300px;
+    min-height: 60px;
+    display: inline-flex;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: var(--color-text);
+    background: var(--color-message-bg);
+    background: linear-gradient(90deg,var(--color-message-hover) 0%, var(--color-message-content-bg) 100%);
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 12px 12px 24px var(--color-text);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+}
+
+.tema::before {
+    content: '';
+    border-radius: 1000px;
+    min-width: calc(300px + 12px);
+    min-height: calc(60px + 12px);
+    border: 6px solid var(--color-message-hover);
+    box-shadow: 0 0 60px var(--color-text);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease-in-out 0s;
+}
+
+.tema:hover, 
+.tema:focus {
+    color: var(--color-text);
+    transform: translateY(-6px);
+}
+
+.tema:hover::before, 
+.tema:focus::before {
+    opacity: 1;
+}
+
+.tema::after {
+    content: '';
+    width: 30px; 
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid var(--color-message-hover);
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+}
+
+.tema:hover::after, 
+.tema:focus::after {
+    animation: none;
+    display: none;
+}
+
+@keyframes ring {
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+.container-disco {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    position: relative;
+}
+
+.disco {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 32px outset var(--color-disc-border);
+    overflow: hidden; 
+    animation: spin 4s infinite linear;
+}
+
+.disco img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.container-mensagem {
+    text-align: center;
+    padding: 50px;
+    background-color: var(--color-message-bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 600px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.container-mensagem:hover {
+    transform: scale(1.05);
+}
+
+.conteudo-mensagem {
+    display: none;
+    padding: 20px;
+    background-color: var(--color-message-content-bg);
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease;
+}
+
+.container-mensagem.aberto .conteudo-mensagem {
+    display: block;
+    opacity: 1;
+}
+
+.container-mensagem h2 {
+    font-size: 1.5rem;
+    color: var(--color-message-hover);
+    margin-bottom: 10px;
+}
+
+.container-mensagem p {
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.quadrado {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    aspect-ratio: 1;
+    --_m: radial-gradient(var(--color-quadrado) 69%, #0000 70%) 84.5%/50%;
+    -webkit-mask-box-image: var(--_m);
+    mask-border: var(--_m);
+    clip-path: polygon(-41% 0, 50% 91%, 141% 0);
+    background: var(--color-quadrado);
+    z-index: -1;
+}
+
+@supports not (-webkit-mask-box-image: var(--_m)) {
+    .quadrado {
+        mask: radial-gradient(at 70% 31%, var(--color-quadrado) 29%, #0000 30%), 
+              radial-gradient(at 30% 31%, var(--color-quadrado) 29%, #0000 30%), 
+              conic-gradient(var(--color-quadrado) 0 0) bottom/100% 50% no-repeat;
+    }
+}
+
+@keyframes cair-dinamico {
+    0% { 
+        transform: translateY(-50px) scale(1); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateY(calc(var(--altura-site) - 50px)) scale(1); 
+        opacity: 0; 
+    }
+}
+
+.mensagem {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-family: 'Arial', sans-serif;
+    color: var(--color-text);
+    background: var(--color-message-bg);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Efeitos ao passar o mouse no botão */
+.mensagem:hover {
+    background: var(--color-message-hover);
+    transform: scale(1.05);
+}
+
+/* Efeitos ao clicar no botão */
+.mensagem:active {
+    transform: scale(0.95);
+}
+
+.container-flor {
+    display: grid;
+}
+
+.flor {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.petala {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background-color: var(--color-quadrado); 
+    border-radius: 50%;
+    transform-origin: bottom center;
+    transition: opacity 2s ease-in-out; 
+}
+
+.petala:nth-child(1) { transform: rotate(0deg) translateY(-20px); }
+.petala:nth-child(2) { transform: rotate(45deg) translateY(-20px); }
+.petala:nth-child(3) { transform: rotate(90deg) translateY(-20px); }
+.petala:nth-child(4) { transform: rotate(135deg) translateY(-20px); }
+.petala:nth-child(5) { transform: rotate(180deg) translateY(-20px); }
+.petala:nth-child(6) { transform: rotate(225deg) translateY(-20px); }
+.petala:nth-child(7) { transform: rotate(270deg) translateY(-20px); }
+.petala:nth-child(8) { transform: rotate(315deg) translateY(-20px); }
+
+.centro {
+    position: absolute;
+    top: 56px;
+    left: 5px;
+    width: 52px;
+    height: 52px;
+    background-color: var(--color-message-hover); 
+    border-radius: 50%;
+}
+
+#centro {
+    background-color: var(--color-bg);
+    border: none;
+}
+
+.caule {
+    margin-left: 20px;
+    width: 10px;
+    height: 150px;
+    background-color: var(--color-disc-border); 
+    border-radius: 5px;
+}
+
+/* Caixa principal */
+.caixa-namoro {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    background-color: red; /* Alterado para vermelho */
+    border-radius: 10px;
+    margin: 50px auto;
+    cursor: pointer;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Tampa da caixa */
+.caixa-namoro .tampa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background-color: darkred; /* Alterado para um tom mais escuro de vermelho */
+    border-radius: 10px 10px 0 0;
+    transform-origin: top center;
+    transition: transform 0.5s ease;
+    z-index: 10;
+}
+
+/* Base da caixa */
+.caixa-namoro .base-caixa {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background-color: crimson; /* Alterado para um tom de vermelho */
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Anel */
+.anel {
+    position: absolute;
+    top: -100%;
+    right: 35%;
+    width: 50px;
+    height: 50px;
+    aspect-ratio: 1;
+    --_m: radial-gradient(var(--color-quadrado) 69%, #0000 70%) 84.5%/50%;
+    -webkit-mask-box-image: var(--_m);
+    mask-border: var(--_m);
+    clip-path: polygon(-41% 0, 50% 91%, 141% 0);
+    background: var(--color-quadrado);
+}
+
+@supports not (-webkit-mask-box-image: var(--_m)) {
+    .anel {
+        mask: radial-gradient(at 70% 31%, var(--color-quadrado) 29%, #0000 30%), 
+              radial-gradient(at 30% 31%, var(--color-quadrado) 29%, #0000 30%), 
+              conic-gradient(var(--color-quadrado) 0 0) bottom/100% 50% no-repeat;
+    }
+}
+
+@keyframes desaparecer {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .disco {
+        width: 300px;
+        height: 300px;
+    }
+
+    .container-mensagem {
+        padding: 30px;
+        margin: 30px 20px;
+    }
+
+    .container-mensagem h2 {
+        font-size: 1.25rem;
+    }
+
+    .container-mensagem p {
+        font-size: 0.9rem;
+    }
+
+    .conteudo-mensagem {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0 10px;
+    }
+
+    .disco {
+        width: 250px;
+        height: 250px;
+        border-width: 16px;
+    }
+
+    .container-mensagem {
+        padding: 15px;
+        margin: 10px;
+        max-width: 100%;
+    }
+
+    .container-mensagem h2 {
+        font-size: 1rem;
+    }
+
+    .container-mensagem p {
+        font-size: 0.8rem;
+    }
+
+    .conteudo-mensagem {
+        padding: 10px;
+    }
+
+    .tema {
+        min-width: 200px;
+        min-height: 50px;
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .tema::before {
+        min-width: calc(200px + 8px);
+        min-height: calc(50px + 8px);
+        border-width: 4px;
+    }
+
+    .tema::after {
+        width: 20px;
+        height: 20px;
+        border-width: 4px;
+    }
+
+    .mensagem {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+}

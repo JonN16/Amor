@@ -1,0 +1,229 @@
+/* Define estilos gerais para o body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background-color: #f1deff;
+    color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+}
+
+/* Estiliza o main */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 90%;
+    max-width: 600px; /* Limita o tamanho máximo em telas maiores */
+    height: 70%; /* Ajusta automaticamente à altura do conteúdo */
+    text-align: center;
+    border: 2px solid #9d4edd;
+}
+.carta{
+    background-color: white;
+}
+
+/* Estiliza o texto */
+#meio {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+    line-height: 1.8;
+    color: #000000;
+    word-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+
+.botao-coracao {
+    position: static; /* Herda o fluxo normal */
+    margin: 0 auto; /* Centraliza horizontalmente se necessário */
+}
+
+#botao a {
+    display: inline-block; /* Faz o link parecer um botão */
+    padding: 12px 25px; /* Ajuste no espaçamento interno */
+    margin-top: 15px; /* Espaço superior */
+    font-size: 1.6em; /* Tamanho da fonte maior */
+    font-family: 'Dancing Script', cursive; /* Fonte cursiva para romance */
+    text-decoration: none; /* Remove o sublinhado */
+    color: #fff; /* Texto branco */
+    background: linear-gradient(90deg, #9d4edd, #6a0dad); /* Gradiente roxo */
+    border-radius: 30px; /* Bordas mais arredondadas */
+    transition: all 0.3s ease; /* Transição para hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Sombra suave */
+}
+
+/* Efeito ao passar o mouse */
+#botao a:hover {
+    background: linear-gradient(90deg, #6a0dad, #9d4edd); /* Inverte o gradiente */
+    color: #000000; /* Texto dourado no hover */
+    transform: translateY(-3px) scale(1.1); /* Leve destaque no hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Sombra mais intensa */
+}
+
+/* Efeito ao clicar */
+#botao a:active {
+    transform: translateY(2px) scale(0.95); /* Efeito de "pressionar" */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra mais reduzida */
+}
+
+/* Animação de aparição */
+#botao a {
+    opacity: 0;
+    animation: aparecer-botao 1s ease forwards 0.5s; /* Delay para sincronizar com o texto */
+}
+
+@keyframes aparecer-botao {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Estilo para o coração */
+.coracao {
+    width: 30px; /* Tamanho reduzido */
+    height: 30px; /* Tamanho reduzido */
+    background-color: #e63946; /* Vermelho */
+    transform: rotate(-45deg);
+    top: 50%; /* Alinhamento vertical */
+    left: 50%; /* Alinhamento horizontal */
+}
+
+/* Forma dos dois círculos */
+.coracao::before,
+.coracao::after {
+    content: "";
+    position: absolute;
+    width: 30px; /* Tamanho dos círculos */
+    height: 30px; /* Tamanho dos círculos */
+    background-color: #e63946; /* Vermelho */
+    border-radius: 50%;
+}
+
+/* Ajuste dos círculos para alinhamento */
+.coracao::before {
+    top: -15px; /* Coloca o primeiro círculo na parte superior */
+    left: 0;
+}
+
+.coracao::after {
+    top: 0;
+    left: 15px; /* Coloca o segundo círculo à direita */
+}
+
+/* Botão de corações */
+#botao-coracao {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative; /* Necessário para o posicionamento absoluto do coração */
+    display: inline-block;
+    width: 60px; /* Ajuste o tamanho conforme necessário */
+    height: 60px; /* Ajuste o tamanho conforme necessário */
+}
+
+/* Animação de "bater" no coração ao passar o mouse */
+#botao-coracao:hover .coracao {
+    animation: bater 0.5s ease-in-out infinite;
+}
+
+@keyframes bater {
+    0%, 100% {
+        transform: scale(1) rotate(-45deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(-45deg);
+    }
+}
+
+
+
+.quadrado {
+    height: 25px; 
+    width: 25px;
+    position: absolute;
+    aspect-ratio: 1;
+    --_m: radial-gradient(#000 69%,#0000 70%) 84.5%/50%;
+    -webkit-mask-box-image: var(--_m);
+    mask-border: var(--_m);
+    clip-path: polygon(-41% 0,50% 91%, 141% 0);
+    background: #a3009e;
+    z-index: -1; 
+  }
+
+  /* Fallback para melhor compatibilidade */
+  @supports not (-webkit-mask-box-image: var(--_m)) { 
+    .heart {
+      mask:
+       radial-gradient(at 70% 31%,#000 29%,#0000 30%),
+       radial-gradient(at 30% 31%,#000 29%,#0000 30%),
+       conic-gradient(#000 0 0) bottom/100% 50% no-repeat;
+    }
+  }
+
+  @keyframes cair {
+    0% { transform: translateY(-50px) scale(1); opacity: 1; }
+    50% { transform: translateY(100vh) scale(1.2); opacity: 0.8; }
+    100% { transform: translateY(200px) scale(1); opacity: 0; }
+}
+
+@keyframes cair-continuo {
+    0% { transform: translateY(-50px) scale(1); opacity: 1; }
+    100% { transform: translateY(100vh) scale(1); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+        width: 95%; 
+        height: 50%;
+    }
+
+    #meio {
+        font-size: 1em; /* Reduz o tamanho da fonte */
+        line-height: 1.4;
+    }
+
+    #botao a {
+        font-size: 1em; /* Tamanho do texto menor */
+        padding: 8px 15px;
+    }
+
+    .quadrado {
+        height: 15px;
+        width: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 15px;
+        width: 80%; 
+        height: 50%;
+    }
+
+    #meio {
+        font-size: 1em; /* Fonte ainda menor para telas pequenas */
+    }
+
+    #botao a {
+        font-size: 1em;
+    }
+}

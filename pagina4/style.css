@@ -1,0 +1,268 @@
+:root {
+    --cor-caixa: #720000;
+    --cor-tampa: #930000;
+    --cor-anel: silver;
+    --cor-brilho-anel: rgba(192, 192, 192, 0.5);
+    --cor-detalhe: #ffcccc;
+    --cor-joia: violet;
+    --cor-brilho-joia: rgba(238, 130, 238, 0.5);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.caixa {
+    width: 300px; /* Aumente o tamanho da caixa */
+    height: 260px; /* Aumente o tamanho da caixa */
+    position: relative;
+    transition: transform 0.5s ease-in-out; /* Efeito de movimento da caixa */
+    border-radius: 30% 30% 10% 10%; /* Adicionando borda arredondada */
+    border: 3px solid transparent; /* Inicialmente sem borda */
+    transition: all 0.5s ease; /* Transição suave para bordas e fundo */
+}
+
+.fundo {
+    width: 96%;
+    height: 96%;
+    background-color: rgb(255, 215, 215);
+    border-radius: 30% 30% 10% 10%;
+    border: #720000 solid 4px;
+}
+
+.tampa, .base {
+    width: 100%;
+    background: linear-gradient(145deg, #a52a2a, #800000); /* Tons de veludo */
+    filter: blur(0.5px); 
+    position: absolute;
+}
+
+.tampa {
+    height: 60%; /* Aumente a altura da tampa */
+    top: 0;
+    border-radius: 30% 30% 0 0;
+    transform-origin: bottom;
+    transition: transform 0.5s ease, height 0.5s ease, opacity 0.5s ease; /* Adicione transição para altura e opacidade */
+    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.5), 
+                inset -5px -5px 15px rgba(255, 255, 255, 0.2); /* Box-shadow apenas no topo da tampa */
+}
+
+.base {
+    height: 40%; /* Diminua a altura da base */
+    z-index: 100;
+    bottom: 0;
+    border-radius: 0 0 10% 10%;
+    box-shadow: inset 10px 0px 15px rgba(0, 0, 0, 0.5), 
+                inset -5px 0px 15px rgba(255, 255, 255, 0.2); /* Box-shadow apenas na base */
+}
+
+.linha {
+    width: 100%;
+    height: 2px;
+    background-color: #000000;
+    position: absolute;
+    top: 60%; /* Ajuste a posição da linha */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.anel {
+    width: 7%; /* Aumente o tamanho do anel */
+    height: 35%; /* Aumente o tamanho do anel */
+    background: linear-gradient(145deg, #d4d4d4, #b0b0b0, #f8f8f8); /* Gradiente metálico */
+    border: 2px solid #b0b0b0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), /* Sombra externa */
+                inset 1px 1px 4px rgba(255, 255, 255, 0.5), /* Brilho interno */
+                inset -1px -1px 4px rgba(0, 0, 0, 0.2); /* Sombra interna */
+    position: absolute;
+    top: 47%; /* Suba um pouco os anéis */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5px;
+    animation: brilhoMetalico 2s infinite alternate; /* Animação sutil */
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.5s ease; /* Transição suave para a opacidade */
+}
+
+/* Animação de reflexo para o metal */
+@keyframes brilhoMetalico {
+    0% {
+        background: linear-gradient(145deg, #d4d4d4, #b0b0b0, #f8f8f8);
+    }
+    100% {
+        background: linear-gradient(145deg, #f8f8f8, #b0b0b0, #d4d4d4);
+    }
+}
+
+.rafa {
+    left: 30%;
+}
+
+.joao {
+    left: 70%;
+}
+
+.joia-alianca {
+    position: absolute;
+    top: 29%;
+    left: 37%;
+    transform: translateY(-50%) rotate(180deg); /* Vire de ponta cabeça */
+    width: 16px; /* Aumente o tamanho da joia-alianca */
+    height: 16px; /* Aumente o tamanho da joia-alianca */
+    background: conic-gradient(#da00cf, #ff99ff, #9400d3, #ff00ff); /* Efeito de facetas */
+    clip-path: polygon(50% 0%, 100% 70%, 50% 100%, 0% 70%); /* Forma de diamante */
+    box-shadow: 0 0 15px rgba(218, 0, 207, 0.5), 
+                inset 0 0 10px rgba(255, 255, 255, 0.7); /* Brilho */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Contorno brilhante */
+    animation: brilhoDiamante 1.5s infinite alternate; /* Reflexo */
+    z-index: 2;
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.5s ease; 
+}
+
+@keyframes brilhoDiamante {
+    0% {
+        box-shadow: 0 0 5px rgba(218, 0, 207, 0.5), 
+                    inset 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(218, 0, 207, 0.8), 
+                    inset 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.alianca {
+    width: 2%; /* Aumente o tamanho da aliança */
+    left: 39%;
+}
+
+.joia {
+    right: 85%;
+    width: 8px; /* Aumente o tamanho da joia */
+    height: 8px; /* Aumente o tamanho da joia */
+    background: conic-gradient(#aa00a4, #da00cf, #a20087, #ff00dd); /* Facetas simuladas */
+    border-radius: 50%; 
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.6), 
+                inset 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: brilhar 1.5s infinite alternate;
+}
+
+@keyframes brilhar {
+    0% {
+        box-shadow: 0 0 5px var(--cor-brilho-joia);
+    }
+    100% {
+        box-shadow: 0 0 15px var(--cor-brilho-joia);
+    }
+}
+
+.caixa.aberta .tampa {
+    background-color: white;
+    border: 3px solid red;
+    transform: translateY(-120px) scaleY(0.1); /* Abre e alonga a tampa */
+    animation: abrirTampa 0.5s ease-out forwards; /* Animação suave ao abrir e "congelar" no final */
+    opacity: 0; /* A tampa começa invisível */
+}
+
+/* Animação para abrir a tampa com bordas arredondadas e desvanecimento */
+@keyframes abrirTampa {
+    0% {
+        transform: translateY(0) scaleY(1); /* Começo da tampa fechada */
+        border-radius: 30% 30% 0 0; /* Bordas iniciais (fechadas) */
+        opacity: 1; /* A tampa é visível no começo */
+    }
+    100% {
+        transform: translateY(-120px) scaleY(0.1); /* A tampa sobe e se alonga */
+        border-radius: 50% 50% 0 0; /* Bordas arredondadas mais acentuadas na parte superior */
+        opacity: 0; /* A tampa desaparece no final */
+    }
+}
+
+.caixa.aberta .anel,
+.caixa.aberta .joia-alianca {
+    opacity: 1; /* Aparece */
+}
+
+.quadrado {
+    height: 25px; 
+    width: 25px;
+    position: absolute;
+    aspect-ratio: 1;
+    --_m: radial-gradient(#000 69%,#0000 70%) 84.5%/50%;
+    -webkit-mask-box-image: var(--_m);
+    mask-border: var(--_m);
+    clip-path: polygon(-41% 0,50% 91%, 141% 0);
+    background: #a3009e;
+    z-index: -1; 
+  }
+
+  /* Fallback para melhor compatibilidade */
+  @supports not (-webkit-mask-box-image: var(--_m)) { 
+    .heart {
+      mask:
+       radial-gradient(at 70% 31%,#000 29%,#0000 30%),
+       radial-gradient(at 30% 31%,#000 29%,#0000 30%),
+       conic-gradient(#000 0 0) bottom/100% 50% no-repeat;
+    }
+  }
+
+  @keyframes cair {
+    0% { transform: translateY(-50px) scale(1); opacity: 1; }
+    50% { transform: translateY(100vh) scale(1.2); opacity: 0.8; }
+    100% { transform: translateY(200px) scale(1); opacity: 0; }
+}
+
+@keyframes cair-continuo {
+    0% { transform: translateY(-50px) scale(1); opacity: 1; }
+    100% { transform: translateY(100vh) scale(1); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .caixa {
+        width: 200px; /* Ajuste o tamanho da caixa para dispositivos móveis */
+        height: 170px; /* Ajuste o tamanho da caixa para dispositivos móveis */
+    }
+
+    .anel {
+        width: 6%; /* Ajuste o tamanho do anel para dispositivos móveis */
+        height: 30%; /* Ajuste o tamanho do anel para dispositivos móveis */
+    }
+
+    .joia-alianca {
+        width: 12px; /* Ajuste o tamanho da joia-alianca para dispositivos móveis */
+        height: 12px; /* Ajuste o tamanho da joia-alianca para dispositivos móveis */
+    }
+
+    .alianca {
+        width: 1.5%; /* Ajuste o tamanho da aliança para dispositivos móveis */
+    }
+
+    .joia {
+        width: 6px; /* Ajuste o tamanho da joia para dispositivos móveis */
+        height: 6px; /* Ajuste o tamanho da joia para dispositivos móveis */
+    }
+}
+
+.mensagem-especial {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Adicionar margem superior para separar da caixa */
+}
+
+.mensagem-especial h1 {
+    font-size: 2rem;
+    color: #333;
+}
