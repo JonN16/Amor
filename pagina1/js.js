@@ -24,13 +24,13 @@ function digitarTexto(elemento, texto, velocidade, callback) {
 coracao.addEventListener("click", function handler() {
     coracao.removeEventListener("click", handler);
     coracao.remove();
-    digitarTexto(meio, texto1, 10, () => {
+    digitarTexto(meio, texto1, 90, () => {
         meio.innerHTML += "<br>";
-        digitarTexto(meio, texto2, 10, () => {
+        digitarTexto(meio, texto2, 90, () => {
             meio.innerHTML += "<br>";
-            digitarTexto(meio, texto3, 10, () => {
+            digitarTexto(meio, texto3, 90, () => {
                 meio.innerHTML += "<br>";
-                digitarTexto(meio, texto4, 10, () => {
+                digitarTexto(meio, texto4, 90, () => {
                     botao.innerHTML += '<a href="../pagina2/index.html">Começar</a>';
                 });
             });

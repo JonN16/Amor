@@ -22,7 +22,7 @@ botao.addEventListener("click", function () {
     comeco.remove();
     botao.remove();
 
-    digitarTexto(h1, texto1, 100, () => {
+    digitarTexto(h1, texto1, 150, () => {
         const meio = document.getElementById("meio");
 
         if (!meio) {
@@ -117,7 +117,7 @@ botao.addEventListener("click", function () {
                     }
         
                     const descrElemento = document.getElementById(`descr-${mesInfo.mes.toLowerCase()}`);
-                    digitarTexto(descrElemento, mesInfo.texto, 1, () => {
+                    digitarTexto(descrElemento, mesInfo.texto, 80, () => {
                         index++;
                         setTimeout(adicionarProximo, intervalo); 
                     });

@@ -38,8 +38,6 @@ function abrirCaixa() {
     reativarBotaoTema()
 }
 
-
-
 function reativarBotaoTema() {
     botaoTema = document.getElementById("mudar-tema");
     botaoTema.addEventListener('click', function () {
